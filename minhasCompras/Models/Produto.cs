@@ -9,7 +9,7 @@ namespace minhasCompras.Models
         public int Id { get; set; }
         public string Descricao { get; set; }
 
-        public double quantidade { get; set; }
+        public double Quantidade { get; set; }
 
         public double preco { get; set; }
     }
