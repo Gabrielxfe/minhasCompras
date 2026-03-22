@@ -11,34 +11,43 @@
 
     <VerticalStackLayout>
         <SearchBar x:Name="txt_search" Placeholder="Budsca de Produtos" TextChanged="txt_search_TextChanged" />
-        
 
-        <ListView x:Name="lst_produtos">
+        <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
+
+            <!-- CABEÇALHO -->
             <ListView.Header>
-                <Grid ColumnDefinitions="*, *, *, *, *" >
-                    <Label Grid.Column="0" Text="ID"/>
-                    <Label Grid.Column="1" Text="Descrição"/>
-                    <Label Grid.Column="2" Text="Preço"/>
-                    <Label Grid.Column="3" Text="Qnt"/>
-                    <Label Grid.Column="4" Text="Total"/>
+                <!-- Proporções: ID(10%), Desc(35%), Preço(20%), Qnt(15%), Total(20%) -->
+                <Grid ColumnDefinitions="1*, 3.5*, 2*, 1.5*, 2*" Padding="10,10">
+                    <Label Grid.Column="0" Text="ID" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                    <Label Grid.Column="1" Text="Descrição" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Column="2" Text="Preço" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                    <Label Grid.Column="3" Text="Qnt" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                    <Label Grid.Column="4" Text="Total" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                 </Grid>
             </ListView.Header>
+
+            <!-- DADOS -->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
                             <MenuItem Text="Remover" Clicked="MenuItem_Clicked"/>
                         </ViewCell.ContextActions>
-                        <Grid ColumnDefinitions="*, *, *, *, *, *" >
-                            <Label Grid.Column="0" Text="{Binding Id}"/>
-                            <Label Grid.Column="1" Text="{Binding Descricao}"/>
-                            <Label Grid.Column="2" Text="{Binding Preco}"/>
-                            <Label Grid.Column="3" Text="{Binding Quantidade}"/>
-                            <Label Grid.Column="4" Text="{Binding Total}"/>
+
+                        <!-- Mesmas proporções do cabeçalho -->
+                        <Grid ColumnDefinitions="1*, 3.5*, 2*, 1.5*, 2*" Padding="10,15">
+                            <Label Grid.Column="0" Text="{Binding Id}" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Column="1" Text="{Binding Descricao}" HorizontalTextAlignment="Start"/>
+
+                            <!-- StringFormat '{0:C}' formata automaticamente para Moeda (R$) -->
+                            <Label Grid.Column="2" Text="{Binding Preco, StringFormat='{0:C}'}" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Column="3" Text="{Binding Quantidade}" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Column="4" Text="{Binding Total, StringFormat='{0:C}'}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
+
         </ListView>
     </VerticalStackLayout>
 </ContentPage>
