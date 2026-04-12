@@ -4,12 +4,12 @@ namespace minhasCompras.Views;
 
 public partial class EditarProduto : ContentPage
 {
-    // 1. Mudamos o construtor para receber o Produto clicado
+ 
     public EditarProduto(Produto p)
     {
         InitializeComponent();
 
-        // 2. Isso preenche a tela automaticamente (se o XAML estiver com Binding)
+      
         BindingContext = p;
     }
 
